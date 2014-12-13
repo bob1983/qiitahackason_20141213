@@ -8,8 +8,44 @@
 
 #import "JANQiitaUserInfoService.h"
 #import <JSONKit/JSONKit.h>
+#import "JANQiitaUserInfo.h"
+
+#define QIITA_USER_INFO @"QIITA_USER_INFO"
 
 @implementation JANQiitaUserInfoService
+- (void)saveQiitaUserInfo:(JANQiitaUserInfo*) qiitaUserInfo
+{
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:qiitaUserInfo];
+    
+    NSMutableArray *qiitaUserInfos = [NSMutableArray arrayWithArray:[self loadQiitaUserInfos]];
+    [qiitaUserInfos addObject:data];
+    [self saveQiitaUserInfos:qiitaUserInfos];
+    
+}
+
+-(JANQiitaUserInfo *)lastQiitaUserInfo
+{
+    NSArray *qiitaUserInfos = [self loadQiitaUserInfos];
+    NSData* data = (NSData*)[qiitaUserInfos lastObject];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
+
+-(NSArray *)loadQiitaUserInfos
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray *qiitaUserInfos = [userDefaults objectForKey:QIITA_USER_INFO];
+    if (qiitaUserInfos) {
+        return [userDefaults objectForKey:QIITA_USER_INFO];
+    }
+    return [NSArray array];
+}
+
+- (void)saveQiitaUserInfos:(NSArray*)qiitaUserInfos
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:qiitaUserInfos forKey:QIITA_USER_INFO];
+    [userDefaults synchronize];
+}
 
 - (void)retrieveQiitaUserInfoWithUserId:(NSString *)userId
                          successHandler:(QiitaUserInfoServiceRetrieveSuccessHandler)successHandler
