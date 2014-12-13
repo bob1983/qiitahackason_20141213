@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JANStockService : NSObject
+@class JANStock;
 
+@interface JANStockService : NSObject
+- (void)saveParsedString:(NSString*) parsedString;
+- (NSUInteger)stockCount;
+
+
+- (void)saveStock:(JANStock*) stock;
+- (NSArray *)loadStacks;
+- (void)saveStacks:(NSArray*)stocks;
 @end
