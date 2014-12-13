@@ -10,5 +10,5 @@
 
 @interface JANStock : NSObject
 // TODO: モデルをちゃんと作る
-@property (nonatomic, copy) NSString *parsedString;
+@property (nonatomic, copy) id data;
 @end
