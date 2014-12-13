@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^StockServiceRetrieveSuccessHandler)(NSArray *);
+typedef void(^StockServiceFailedHandler)();
 @interface JANStockService : NSObject
-
+- (void)retrieveStocksWithUserId:(NSString *)userId
+                         successHandler:(StockServiceRetrieveSuccessHandler)successHandler
+                          failedHandler:(StockServiceFailedHandler)failedHandler;
 @end
