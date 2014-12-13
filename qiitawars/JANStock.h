@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface JANStock : NSObject
-
+// TODO: モデルをちゃんと作る
+@property (nonatomic, copy) NSString *parsedString;
 @end

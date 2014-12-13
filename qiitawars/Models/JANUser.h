@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface JANUser : NSObject
-
+@property (nonatomic, copy) NSString *accountName;
 @end

@@ -9,5 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface JANQiitaUserInfo : NSObject
-
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *qiitaId;
+@property (nonatomic, copy) NSString *profileImageUrl;
+@property (nonatomic)       NSUInteger followersCount;
+@property (nonatomic)       NSUInteger followeesCount;
+@property (nonatomic)       NSUInteger itemsCount;
 @end
